@@ -1,33 +1,19 @@
 <app-menu-title></app-menu-title>
 <div class="container__articles">
   <div class="articles__main">
-    <app-big-card
-      Id="1"
-      photoCover="https://cdn.maioresemelhores.com/imagens/melhores-filmes-de-aventura-og.jpg"
-      cardTitle="Senhor dos Anéis"
-      cardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisl est, elementum non luctus vitae, sagittis ut sapien. Etiam fringilla, lectus id imperdiet pellentesque, quam risus ornare est, at luctus lacus justo vel enim. Curabitur efficitur sit amet ligula et auctor. Aenean in faucibus metus. Aenean elit lorem, efficitur eu lectus ac, tincidunt tincidunt leo. Etiam ac lacus non lectus eleifend ultricies. Maecenas pulvinar vulputate ultricies. Aliquam vel felis ultricies, molestie dolor quis, tempor velit. Phasellus ullamcorper augue sed laoreet laoreet. Ut efficitur ligula orci, id blandit diam finibus vitae. Sed at urna interdum, sagittis elit eu, imperdiet ante."
-      >
+    <app-big-card Id={{posts[3].mal_id}} photoCover="{{posts[3].images.jpg.image_url}}" cardTitle={{posts[3].title}}
+      cardDescription={{posts[3].synopsis}}>
     </app-big-card>
   </div>
+
   <div class="articles__others">
-    <app-small-card
-    Id="2"
-    photoCover="https://th.bing.com/th/id/OIP.8aDAGj9M6jgHIAZiVRDtXgHaE8?rs=1&pid=ImgDetMain"
-    cardTitle="Avatar"
-    >
-    </app-small-card>
-    <app-small-card
-    Id="3"
-    photoCover="https://th.bing.com/th/id/R.95b8b6ce12603f7a7328bb48cceeab7e?rik=g47jrw9Idksk6w&pid=ImgRaw&r=0"
-    cardTitle="Liga da Justiça"
-    >
-    </app-small-card>
-    <app-small-card
-    Id="4"
-    photoCover="https://img.olhardigital.com.br/wp-content/uploads/2019/10/20191018112239.jpg"
-    cardTitle="Rambo"
-    >
-    </app-small-card>
-   
+
+    <div *ngFor="let post of posts.slice(0, 3)">
+
+      <app-small-card Id={{post.mal_id}} photoCover="{{post.images.jpg.image_url}}" cardTitle={{post.title}}>
+      </app-small-card>
+
+    </div>
+
   </div>
 </div>

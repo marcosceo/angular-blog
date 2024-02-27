@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {dataFake} from '../../data/dataFake'
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-content',
@@ -8,30 +9,24 @@ import {dataFake} from '../../data/dataFake'
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent {
-  @Input()
-  photoCover:string = ""
-  @Input()
-  contentTitle:string = ""
-  @Input()
-  contentDescription:string = ""
+  
   private id:string |  null = "0"
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private service: PostService) {
 
   }
+
+  post:any
 
   ngOnInit(): void {
     this.route.paramMap.subscribe( value => this.id = value.get("id")
     )
 
-    this.setValuesToComponent(this.id)
+    this.service.getPost(this.id)
+    .subscribe((response:any) => {
+      this.post = response.data
+    })
   }
 
-  setValuesToComponent(id:string | null) {
-    const result = dataFake.filter(article => article.id.toString() == id )[0]
 
-    this.contentTitle = result.title
-    this.contentDescription = result.description
-    this.photoCover = result.photoCover
-  }
 }
